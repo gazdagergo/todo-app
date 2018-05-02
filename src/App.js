@@ -10,18 +10,19 @@ class App extends Component {
   render() {
     return (
       <MuiThemeProvider>
-      <div className="App">
+        <div className="App">
           <AppBar
             title="Todo app"
             iconClassNameRight="muidocs-icon-navigation-expand-more"
           />
-        <p className="App-wrapper">
-          <TodoList>
-            <TodoListItem />
-            <TodoListItem />
-          </TodoList>
-        </p>
-      </div>
+          <p className="App-wrapper">
+            <TodoList>
+              <TodoListItem />
+              <Divider />
+              <TodoListItem />
+            </TodoList>
+          </p>
+        </div>
       </MuiThemeProvider>
     );
   }

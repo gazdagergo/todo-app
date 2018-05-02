@@ -1,10 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { List, Card } from 'material-ui';
+
 
 const TodoList = ({ children }) => (
-  <div className="todo-list">
-    { children }
-  </div>
+  <Card className="todo-list">
+    <List>
+      { children }
+    </List>
+  </Card>
 )
 
 TodoList.PropTypes = {
