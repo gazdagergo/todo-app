@@ -3,15 +3,18 @@ import logo from './logo.svg';
 import './App.css';
 import TodoList from './todo-list';
 import TodoListItem from './todo-list-item';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { AppBar, Divider } from 'material-ui';
 
 class App extends Component {
   render() {
     return (
+      <MuiThemeProvider>
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
+          <AppBar
+            title="Todo app"
+            iconClassNameRight="muidocs-icon-navigation-expand-more"
+          />
         <p className="App-wrapper">
           <TodoList>
             <TodoListItem />
@@ -19,6 +22,7 @@ class App extends Component {
           </TodoList>
         </p>
       </div>
+      </MuiThemeProvider>
     );
   }
 }
