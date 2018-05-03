@@ -11,8 +11,9 @@ class App extends Component {
       <MuiThemeProvider>
         <div className="App">
           <AppBar
-            title="Todo app"
-            iconClassNameRight="muidocs-icon-navigation-expand-more"
+            className="app-bar"
+            title="Tennivalók"
+            showMenuIconButton={ false }
           />
           <p className="App-wrapper">
             <TodoList>
