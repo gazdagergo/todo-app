@@ -7,6 +7,8 @@ import {
   IconButton,
   IconMenu,
   MenuItem,
+  Dialog,
+  FlatButton,
 } from 'material-ui';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import { grey400 } from 'material-ui/styles/colors';
@@ -21,30 +23,93 @@ const iconButtonElement = (
   </IconButton>
 );
 
-const rightIconMenu = (
-  <IconMenu iconButtonElement={iconButtonElement}>
-    <MenuItem>Edit</MenuItem>
-    <MenuItem>Delete</MenuItem>
-  </IconMenu>
-);
-
 class TodoListItem extends React.Component {
+  static propTypes = {
+    onRemove: PropTypes.func,
+  }
+
+  static defaultProps = {
+    onRemove: () => { console.info('No remove'); }
+  }
+
   state = {
-    value: null
+    value: 'a',
+    isChecked: false,
+    isEditing: false,
   };
 
-  handleInputChange = e => {
+  handleChange = e => {
     this.setState({ value: e.target.value })
   };
+
+  handleCheck = isChecked => {
+    this.setState({ isChecked })
+  }
+
+  handleRemove = () => {
+    this.props.onRemove();
+  }
+
+  setEditing = isEditing => {
+    this.setState({ isEditing })
+  }
+
+  handleSave = () => {
+    console.log('saved');
+    this.setEditing(false);
+  }
+
 
   render() {
     return (
       <ListItem
         className="todo-list-item"
-        leftCheckbox={<Checkbox />}
-        rightIconButton={rightIconMenu}
+        leftCheckbox={ (
+          <Checkbox
+            onCheck={ (e, c) => this.handleCheck(c) }
+            checked={ this.state.isChecked }
+          />
+        ) }
+        rightIconButton={ (
+          <IconMenu iconButtonElement={ iconButtonElement }>
+          <MenuItem
+            onClick={ () => this.setEditing(true) }
+          >
+            Szerkeszt
+          </MenuItem>
+          <MenuItem
+            onClick={ this.handleRemove }
+          >
+            Töröl
+          </MenuItem>
+        </IconMenu>          
+        ) }
+        style={ { color: this.state.isChecked ? grey400 : 'inherit' } }
       >
-        aaaa
+        { this.state.value }
+        <Dialog
+          title="Todo elem szerkesztése"
+          actions={[
+            <FlatButton
+              label="Mégsem"
+              onClick={ () => this.setEditing(false) }
+            />,
+            <FlatButton
+              label="Mehet"
+              primary
+              onClick={ this.handleSave }
+            />,
+          ]}
+          modal={ false }
+          open={ this.state.isEditing }
+          onRequestClose={ () => this.setEditing(false) }
+        >
+          <TextField
+            className="todo-list-item-modal-textfield"
+            defaultValue={ this.state.value }
+            onChange={ this.handleChange }
+          />
+        </Dialog>      
       </ListItem>
     );
   }

@@ -1,4 +1,12 @@
 .todo-list {
   max-width: 800px;
   margin: auto;
+
+  &-item {
+    &-modal {
+      &-textfield {
+        width: 100% !important;
+      }
+    }
+  }
 }
