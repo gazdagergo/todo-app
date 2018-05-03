@@ -3,6 +3,8 @@
   margin: auto;
 
   &-item {
+    min-height: 1em;
+
     &-modal {
       &-textfield {
         width: 100% !important;
