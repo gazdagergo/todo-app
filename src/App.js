@@ -12,14 +12,14 @@ class App extends Component {
         onRemove: id => {console.log('remove', id)},
         completed: true,
         text: 'waaa',
-        onSave: id => console.log('saved', id),
+        onSave: (id, value) => console.log(id, 'new value is', value),
       },
       {
         id: 1,
         onRemove: id => console.log('remove', id),
         completed: false,
         text: 'wooo',
-        onSave: id => console.log('saved', id),
+        onSave: (id, value) => console.log(id, 'new value is', value),
       },
     ],
   }

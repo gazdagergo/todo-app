@@ -35,23 +35,23 @@ class TodoListItem extends React.Component {
 
   state = {
     isEditing: false,
-    value: null,
+    inputValue: null,
   };
 
   handleChange = e => {
-    this.setState({ value: e.target.value })
+    this.setState({ inputValue: e.target.value })
   };
 
   setEditing = isEditing => {
     this.setState({
       isEditing,
-      value: this.props.text,
+      inputValue: this.props.text,
     })
   }
 
   handleSave = () => {
     this.setEditing(false);
-    this.props.onSave(this.props.id)
+    this.props.onSave(this.props.id, this.state.inputValue)
   }
 
   render() {
@@ -103,7 +103,7 @@ class TodoListItem extends React.Component {
           <TextField
             className="todo-list-item-modal-textfield"
             defaultValue={ this.props.text }
-            onChange={ () => this.handleChange }
+            onChange={ this.handleChange }
           />
         </Dialog>      
       </ListItem>
