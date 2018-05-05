@@ -20,7 +20,7 @@ const todos = (state = mockState, action) => {
         : todo
       )
 
-    case 'SAVE_TODO': 
+    case 'UPDATE_TODO': 
       return state.map(todo => 
         (todo.id === action.id)
           ? {...todo, text: action.text}

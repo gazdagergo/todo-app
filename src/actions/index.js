@@ -4,9 +4,9 @@ export const toggleTodo = (id) => {
   id,
 })};
 
-export const saveTodo = (id, text) => {
+export const updateTodo = (id, text) => {
   return ({
-  type: "SAVE_TODO",
+  type: "UPDATE_TODO",
   id, 
   text,
 })};

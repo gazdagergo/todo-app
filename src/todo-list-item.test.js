@@ -16,7 +16,7 @@ describe('<TodoListItem />', () => {
     id: 0,
     completed: true,
     text: 'waaa',
-    onSave: jest.fn(),
+    onUpdate: jest.fn(),
     onClick: jest.fn(),
   };
   
@@ -39,20 +39,20 @@ describe('<TodoListItem />', () => {
     expect(wrapper.find('input[type="checkbox"]').instance().checked).toBe(false); 
   });
 
-  it('onSave should be called with id and new input value', () => {
-    const onSave = jest.fn();
+  it('onUpdate should be called with id and new input value', () => {
+    const onUpdate = jest.fn();
 
     const props = {
       id: 0,
       completed: true,
       text: 'waaa',
-      onSave,
+      onUpdate,
       onClick: jest.fn(),
     };
     const wrapper = mountWithContext(<TodoListItem { ...props } />);
     const instance = wrapper.instance();
     instance.setState({ inputValue: 'new value'});
-    instance.handleSave();
-    expect(onSave.mock.calls[0]).toMatchObject([0, 'new value']);
+    instance.handleUpdate();
+    expect(onUpdate.mock.calls[0]).toMatchObject([0, 'new value']);
   });
 });

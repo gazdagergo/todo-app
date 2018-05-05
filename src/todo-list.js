@@ -1,11 +1,11 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from "react-redux";
-import { toggleTodo, saveTodo, removeTodo } from "./actions";
+import { toggleTodo, updateTodo, removeTodo } from "./actions";
 import { List, Card, Divider } from 'material-ui';
 import TodoListItem from './todo-list-item';
 
-const TodoList = ({todos, toggleTodo, saveTodo, removeTodo}) => (
+const TodoList = ({todos, toggleTodo, updateTodo, removeTodo}) => (
   <Card className="todo-list">
     <List>
       {todos.map((todo, i) =>
@@ -13,7 +13,7 @@ const TodoList = ({todos, toggleTodo, saveTodo, removeTodo}) => (
           <TodoListItem
             {...todo}
             onClick={() => toggleTodo(todo.id)}
-            onSave={text => saveTodo(todo.id, text)}
+            onUpdate={text => updateTodo(todo.id, text)}
             onRemove={() => removeTodo(todo.id)}
           />
           { todos.length > i + 1 && <Divider /> }
@@ -30,7 +30,7 @@ TodoList.propTypes = {
     text: PropTypes.string.isRequired,
   }).isRequired).isRequired,
   toggleTodo: PropTypes.func.isRequired,
-  saveTodo: PropTypes.func.isRequired,
+  updateTodo: PropTypes.func.isRequired,
   removeTodo: PropTypes.func.isRequired,
 }
 
@@ -40,7 +40,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   toggleTodo: id => dispatch(toggleTodo(id)),
-  saveTodo: (id, text) => dispatch(saveTodo(id, text)),
+  updateTodo: (id, text) => dispatch(updateTodo(id, text)),
   removeTodo: id => dispatch(removeTodo(id)),
 });
 

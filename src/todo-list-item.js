@@ -29,7 +29,7 @@ class TodoListItem extends React.Component {
     onClick: PropTypes.func.isRequired,
     completed: PropTypes.bool.isRequired,
     text: PropTypes.string.isRequired,
-    onSave: PropTypes.func.isRequired,
+    onUpdate: PropTypes.func.isRequired,
   }
 
   state = {
@@ -52,9 +52,9 @@ class TodoListItem extends React.Component {
     this.setState({ isEditing: false })
   }
 
-  handleSave = () => {
+  handleUpdate = () => {
     this.stopEditing();
-    this.props.onSave(this.state.inputValue)
+    this.props.onUpdate(this.state.inputValue)
   }
 
   render() {
@@ -98,7 +98,7 @@ class TodoListItem extends React.Component {
               key="2"
               label="Mehet"
               primary
-              onClick={ this.handleSave }
+              onClick={ this.handleUpdate }
             />,
           ]}
           modal={ false }
