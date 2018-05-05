@@ -25,7 +25,6 @@ const iconButtonElement = (
 
 class TodoListItem extends React.Component {
   static propTypes = {
-    id: PropTypes.number.isRequired,
     onRemove: PropTypes.func,
     onClick: PropTypes.func.isRequired,
     completed: PropTypes.bool.isRequired,
@@ -76,7 +75,7 @@ class TodoListItem extends React.Component {
               Szerkeszt
             </MenuItem>
             <MenuItem
-              onClick={ () => this.props.onRemove(this.props.id) }
+              onClick={ this.props.onRemove }
             >
               Töröl
             </MenuItem>          

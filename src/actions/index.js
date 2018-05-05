@@ -10,3 +10,8 @@ export const saveTodo = (id, text) => {
   id, 
   text,
 })};
+
+export const removeTodo = id => ({
+  type: "REMOVE_TODO",
+  id,
+})
