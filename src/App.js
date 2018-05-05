@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import TodoList from './todo-list';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { AppBar, Divider } from 'material-ui';
+import { AppBar } from 'material-ui';
 
 class App extends Component {
   render() {
