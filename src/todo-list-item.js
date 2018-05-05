@@ -55,7 +55,7 @@ class TodoListItem extends React.Component {
 
   handleSave = () => {
     this.stopEditing();
-    this.props.onSave(this.props.id, this.state.inputValue)
+    this.props.onSave(this.state.inputValue)
   }
 
   render() {
