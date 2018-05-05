@@ -16,8 +16,8 @@ describe('<TodoListItem />', () => {
     id: 0,
     completed: true,
     text: 'waaa',
-    onSave: id => console.log('saved', id),
-    onClick: id => console.log('clicked', id),
+    onSave: jest.fn(),
+    onClick: jest.fn(),
   };
   
   it('should be mounted with required props', () => {
