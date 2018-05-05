@@ -5,6 +5,29 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { AppBar } from 'material-ui';
 
 class App extends Component {
+  state = {
+    todos: [
+      {
+        id: 0,
+        onRemove: id => {console.log('remove', id)},
+        completed: true,
+        text: 'waaa',
+        onSave: id => console.log('saved', id),
+      },
+      {
+        id: 1,
+        onRemove: id => console.log('remove', id),
+        completed: false,
+        text: 'wooo',
+        onSave: id => console.log('saved', id),
+      },
+    ],
+  }
+
+  toggleTodo = (id, isChecked) => {
+    console.log('todo', id, 'cheked became', isChecked)
+  }
+
   render() {
     return (
       <MuiThemeProvider>
@@ -16,8 +39,8 @@ class App extends Component {
           />
           <div className="App-wrapper">
             <TodoList
-              todos={ todos }
-              toggleTodo={ toggleTodo }
+              todos={ this.state.todos }
+              toggleTodo={ this.toggleTodo }
             />
           </div>
         </div>
