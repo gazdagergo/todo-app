@@ -12,7 +12,7 @@ const TodoList = ({todos, toggleTodo, saveTodo}) => (
         <Fragment key={todo.id}>
           <TodoListItem
             {...todo}
-            onClick={isChecked => toggleTodo(todo.id, isChecked)}
+            onClick={() => toggleTodo(todo.id)}
             onSave={text => saveTodo(todo.id, text)}
             onRemove={() => {}}
           />
@@ -37,7 +37,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  toggleTodo: (id, isChecked) => dispatch(toggleTodo(id, isChecked)),
+  toggleTodo: id => dispatch(toggleTodo(id)),
   saveTodo: (id, newValue) => dispatch(saveTodo(id, newValue)),
 });
 

@@ -1,8 +1,7 @@
-export const toggleTodo = (id, isChecked) => {
+export const toggleTodo = (id) => {
   return ({
   type: "TOGGLE_TODO",
   id,
-  isChecked,
 })};
 
 export const saveTodo = (id, text) => {
