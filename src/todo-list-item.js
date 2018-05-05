@@ -42,15 +42,19 @@ class TodoListItem extends React.Component {
     this.setState({ inputValue: e.target.value })
   };
 
-  setEditing = isEditing => {
+  startEditing = () => {
     this.setState({
-      isEditing,
       inputValue: this.props.text,
+      isEditing: true,
     })
   }
 
+  stopEditing = () => {
+    this.setState({ isEditing: false })
+  }
+
   handleSave = () => {
-    this.setEditing(false);
+    this.stopEditing();
     this.props.onSave(this.props.id, this.state.inputValue)
   }
 
@@ -67,7 +71,7 @@ class TodoListItem extends React.Component {
         rightIconButton={ (
           <IconMenu iconButtonElement={ iconButtonElement }>
             <MenuItem
-              onClick={ () => this.setEditing(true) }
+              onClick={ this.startEditing }
             >
               Szerkeszt
             </MenuItem>
@@ -80,14 +84,16 @@ class TodoListItem extends React.Component {
         ) }
         style={ { color: this.props.completed ? grey400 : 'inherit' } }
       >
-        { this.props.text }
+        <div className="todo-list-item-text">
+          { this.props.text }
+        </div>
         <Dialog
           title="Todo elem szerkesztése"
           actions={[
             <FlatButton
               key="1"
               label="Mégsem"
-              onClick={ () => this.setEditing(false) }
+              onClick={ this.stopEditing }
             />,
             <FlatButton
               key="2"
@@ -98,7 +104,7 @@ class TodoListItem extends React.Component {
           ]}
           modal={ false }
           open={ this.state.isEditing }
-          onRequestClose={ () => this.setEditing(false) }
+          onRequestClose={ this.stopEditing }
         >
           <TextField
             className="todo-list-item-modal-textfield"
