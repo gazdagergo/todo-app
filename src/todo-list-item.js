@@ -25,40 +25,34 @@ const iconButtonElement = (
 
 class TodoListItem extends React.Component {
   static propTypes = {
+    id: PropTypes.number.isRequired,
     onRemove: PropTypes.func,
-  }
-
-  static defaultProps = {
-    onRemove: () => { console.info('No remove'); }
+    onClick: PropTypes.func.isRequired,
+    completed: PropTypes.bool.isRequired,
+    text: PropTypes.string.isRequired,
+    onSave: PropTypes.func.isRequired,
   }
 
   state = {
-    value: 'a',
-    isChecked: false,
     isEditing: false,
+    value: null,
   };
 
   handleChange = e => {
     this.setState({ value: e.target.value })
   };
 
-  handleCheck = isChecked => {
-    this.setState({ isChecked })
-  }
-
-  handleRemove = () => {
-    this.props.onRemove();
-  }
-
   setEditing = isEditing => {
-    this.setState({ isEditing })
+    this.setState({
+      isEditing,
+      value: this.props.text,
+    })
   }
 
   handleSave = () => {
-    console.log('saved');
     this.setEditing(false);
+    this.props.onSave(this.props.id)
   }
-
 
   render() {
     return (
@@ -66,35 +60,37 @@ class TodoListItem extends React.Component {
         className="todo-list-item"
         leftCheckbox={ (
           <Checkbox
-            onCheck={ (e, c) => this.handleCheck(c) }
-            checked={ this.state.isChecked }
+            onCheck={ (e, c) => this.props.onClick(c) }
+            checked={ this.props.completed }
           />
         ) }
         rightIconButton={ (
           <IconMenu iconButtonElement={ iconButtonElement }>
-          <MenuItem
-            onClick={ () => this.setEditing(true) }
-          >
-            Szerkeszt
-          </MenuItem>
-          <MenuItem
-            onClick={ this.handleRemove }
-          >
-            Töröl
-          </MenuItem>
-        </IconMenu>          
+            <MenuItem
+              onClick={ () => this.setEditing(true) }
+            >
+              Szerkeszt
+            </MenuItem>
+            <MenuItem
+              onClick={ () => this.props.onRemove(this.props.id) }
+            >
+              Töröl
+            </MenuItem>          
+          </IconMenu>          
         ) }
-        style={ { color: this.state.isChecked ? grey400 : 'inherit' } }
+        style={ { color: this.props.completed ? grey400 : 'inherit' } }
       >
-        { this.state.value }
+        { this.props.text }
         <Dialog
           title="Todo elem szerkesztése"
           actions={[
             <FlatButton
+              key="1"
               label="Mégsem"
               onClick={ () => this.setEditing(false) }
             />,
             <FlatButton
+              key="2"
               label="Mehet"
               primary
               onClick={ this.handleSave }
@@ -106,8 +102,8 @@ class TodoListItem extends React.Component {
         >
           <TextField
             className="todo-list-item-modal-textfield"
-            defaultValue={ this.state.value }
-            onChange={ this.handleChange }
+            defaultValue={ this.props.text }
+            onChange={ () => this.handleChange }
           />
         </Dialog>      
       </ListItem>
