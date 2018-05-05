@@ -38,7 +38,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   toggleTodo: id => dispatch(toggleTodo(id)),
-  saveTodo: (id, newValue) => dispatch(saveTodo(id, newValue)),
+  saveTodo: (id, text) => dispatch(saveTodo(id, text)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoList)
