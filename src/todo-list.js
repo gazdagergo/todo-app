@@ -1,5 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from "react-redux";
+import { toggleTodo } from "./actions";
 import { List, Card, Divider } from 'material-ui';
 import TodoListItem from './todo-list-item';
 
@@ -30,4 +32,12 @@ TodoList.propTypes = {
   toggleTodo: PropTypes.func.isRequired
 }
 
-export default TodoList;
+const mapStateToProps = state => ({
+  todos: state.todos
+});
+
+const mapDispatchToProps = dispatch => ({
+  toggleTodo: id => dispatch(toggleTodo(id))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoList)

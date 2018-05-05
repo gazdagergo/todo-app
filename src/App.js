@@ -24,10 +24,6 @@ class App extends Component {
     ],
   }
 
-  toggleTodo = (id, isChecked) => {
-    console.log('todo', id, 'cheked became', isChecked)
-  }
-
   render() {
     return (
       <MuiThemeProvider>
@@ -40,7 +36,6 @@ class App extends Component {
           <div className="App-wrapper">
             <TodoList
               todos={ this.state.todos }
-              toggleTodo={ this.toggleTodo }
             />
           </div>
         </div>
