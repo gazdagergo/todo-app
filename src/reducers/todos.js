@@ -1,17 +1,12 @@
-const mockState = [
+const initialState = [
   {
     id: 0,
-    text: 'foo',
+    text: 'Az első tennivalóm',
     completed: false,
-  },
-  {
-    id: 1,
-    text: 'bar',
-    completed: false,
-  },
+  }
 ]
 
-const todos = (state = mockState, action) => {
+const todos = (state = initialState, action) => {
   switch (action.type) { 
     case 'TOGGLE_TODO':
       return state.map(todo =>
