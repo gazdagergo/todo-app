@@ -32,10 +32,16 @@ export const updateTodo = (id, text) => dispatch => {
   ))
 };
 
-export const removeTodo = id => ({
-  type: "REMOVE_TODO",
-  id,
-});
+export const removeTodo = id => dispatch => {
+  fetch(`https://gg-todo-app.firebaseio.com/todos/${id}.json`, {
+    method: 'DELETE'
+    })
+    .then(dispatch({
+      type: "REMOVE_TODO",
+      id, 
+    }
+  ))
+};
 
 export const addTodo = text => dispatch => {
   fetch(`https://gg-todo-app.firebaseio.com/todos.json`, {
