@@ -6,36 +6,41 @@ import { List, Card, Divider } from 'material-ui';
 import TodoListItem from './todo-list-item';
 import AddTodo from './todo-add';
 
-const TodoList = ({todos, toggleTodo, updateTodo, removeTodo}) => (
+class TodoList extends React.Component {
+  static propTypes = {
+    todos: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      completed: PropTypes.bool,
+      text: PropTypes.string.isRequired,
+    }).isRequired).isRequired,
+    toggleTodo: PropTypes.func.isRequired,
+    updateTodo: PropTypes.func.isRequired,
+    removeTodo: PropTypes.func.isRequired,
+  }
+    
+
+  render() {
+    return (
   <div className="todo-list-wrapper">
     <Card className="todo-list">
       <List>
-        {todos.map((todo, i) =>
+            {this.props.todos.map((todo, i) =>
           <Fragment key={todo.id}>
             <TodoListItem
               {...todo}
-              onClick={() => toggleTodo(todo.id)}
-              onUpdate={text => updateTodo(todo.id, text)}
-              onRemove={() => removeTodo(todo.id)}
+                  onClick={() => this.props.toggleTodo(todo.id)}
+                  onUpdate={text => this.props.updateTodo(todo.id, text)}
+                  onRemove={() => this.props.removeTodo(todo.id)}
             />
-            { todos.length > i + 1 && <Divider /> }
+                { this.props.todos.length > i + 1 && <Divider /> }
           </Fragment>
         )}
       </List>
     </Card>
     <AddTodo />
   </div>
-)
-
-TodoList.propTypes = {
-  todos: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    completed: PropTypes.bool,
-    text: PropTypes.string.isRequired,
-  }).isRequired).isRequired,
-  toggleTodo: PropTypes.func.isRequired,
-  updateTodo: PropTypes.func.isRequired,
-  removeTodo: PropTypes.func.isRequired,
+    );
+  }
 }
 
 const mapStateToProps = state => ({
