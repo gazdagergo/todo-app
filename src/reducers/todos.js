@@ -32,6 +32,15 @@ const todos = (state = mockState, action) => {
         todo.id !== action.id
       )
 
+    case 'ADD_TODO':
+      return [
+        ...state,
+        {
+          id: action.id,
+          text: action.text,
+        }
+      ];
+
     default:
       return state
   }
