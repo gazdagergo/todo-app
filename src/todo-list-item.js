@@ -70,7 +70,7 @@ class TodoListItem extends React.Component {
           { this.props.text }
         </div>
         <TodoDialog 
-          title="Todo elem szerkesztése"
+          title="Tennivaló szerkesztése"
           onClose={ () => this.setState({ isEditing: false }) }
           open={ this.state.isEditing }
           defaultValue={ this.props.text }

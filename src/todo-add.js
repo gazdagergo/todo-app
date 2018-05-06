@@ -29,7 +29,7 @@ class AddTodo extends React.Component {
           onClick={ () => this.setState({ isEditing: true }) }
         />
         <TodoDialog 
-          title="Todo elem hozzáadása"
+          title="Tennivaló hozzáadása"
           onClose={ () => this.setState({ isEditing: false }) }
           open={ this.state.isEditing }
           defaultValue=""
