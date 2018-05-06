@@ -24,7 +24,7 @@ class TodoListItem extends React.Component {
   static propTypes = {
     onRemove: PropTypes.func,
     onClick: PropTypes.func.isRequired,
-    completed: PropTypes.bool.isRequired,
+    completed: PropTypes.bool,
     text: PropTypes.string.isRequired,
     onUpdate: PropTypes.func.isRequired,
   }

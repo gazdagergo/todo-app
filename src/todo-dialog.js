@@ -10,7 +10,7 @@ class TodoDialog extends React.Component {
   static propTypes = {
     onClose: PropTypes.func,
     open: PropTypes.bool,
-    defaultValue: PropTypes.text,
+    defaultValue: PropTypes.string,
     onSave: PropTypes.func,
     title: PropTypes.string,
   };
