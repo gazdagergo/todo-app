@@ -1,13 +1,13 @@
-const initialState = [
-  {
-    id: 'first',
-    text: 'Az első tennivalóm',
-    completed: false,
-  }
-]
+const initialState = [];
 
 const todos = (state = initialState, action) => {
   switch (action.type) { 
+    case 'REQUEST_TODOS':
+      return state;
+
+    case 'RECEIVE_TODOS':
+      return action.todos;
+
     case 'TOGGLE_TODO':
       return state.map(todo =>
         (todo.id === action.id)

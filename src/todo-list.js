@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from "react-redux";
-import { toggleTodo, updateTodo, removeTodo } from "./actions";
+import { toggleTodo, updateTodo, removeTodo, fetchTodos } from "./actions";
 import { List, Card, Divider } from 'material-ui';
 import TodoListItem from './todo-list-item';
 import AddTodo from './todo-add';
@@ -18,27 +18,30 @@ class TodoList extends React.Component {
     removeTodo: PropTypes.func.isRequired,
   }
     
+  componentDidMount() {
+    this.props.fetchTodos();
+  }
 
   render() {
     return (
-  <div className="todo-list-wrapper">
-    <Card className="todo-list">
-      <List>
+      <div className="todo-list-wrapper">
+        <Card className="todo-list">
+          <List>
             {this.props.todos.map((todo, i) =>
-          <Fragment key={todo.id}>
-            <TodoListItem
-              {...todo}
+              <Fragment key={todo.id}>
+                <TodoListItem
+                  {...todo}
                   onClick={() => this.props.toggleTodo(todo.id)}
                   onUpdate={text => this.props.updateTodo(todo.id, text)}
                   onRemove={() => this.props.removeTodo(todo.id)}
-            />
+                />
                 { this.props.todos.length > i + 1 && <Divider /> }
-          </Fragment>
-        )}
-      </List>
-    </Card>
-    <AddTodo />
-  </div>
+              </Fragment>
+            )}
+          </List>
+        </Card>
+        <AddTodo />
+      </div>
     );
   }
 }
@@ -48,6 +51,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  fetchTodos: () =>  dispatch(fetchTodos()),
   toggleTodo: id => dispatch(toggleTodo(id)),
   updateTodo: (id, text) => dispatch(updateTodo(id, text)),
   removeTodo: id => dispatch(removeTodo(id)),
