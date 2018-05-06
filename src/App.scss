@@ -3,8 +3,10 @@
 }
 
 .todo-list {
-  max-width: 800px;
-  margin: auto;
+  &-wrapper {
+    max-width: 800px;
+    margin: 12px auto;
+  }
 
   &-item {
     min-height: 1em;
@@ -15,4 +17,8 @@
       }
     }
   }
+}
+
+.todo-add-button {
+  margin-top: 12px;
 }

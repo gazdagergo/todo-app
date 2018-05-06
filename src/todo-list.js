@@ -4,23 +4,27 @@ import { connect } from "react-redux";
 import { toggleTodo, updateTodo, removeTodo } from "./actions";
 import { List, Card, Divider } from 'material-ui';
 import TodoListItem from './todo-list-item';
+import AddTodo from './todo-add';
 
 const TodoList = ({todos, toggleTodo, updateTodo, removeTodo}) => (
-  <Card className="todo-list">
-    <List>
-      {todos.map((todo, i) =>
-        <Fragment key={todo.id}>
-          <TodoListItem
-            {...todo}
-            onClick={() => toggleTodo(todo.id)}
-            onUpdate={text => updateTodo(todo.id, text)}
-            onRemove={() => removeTodo(todo.id)}
-          />
-          { todos.length > i + 1 && <Divider /> }
-        </Fragment>
-      )}
-    </List>
-  </Card>
+  <div className="todo-list-wrapper">
+    <Card className="todo-list">
+      <List>
+        {todos.map((todo, i) =>
+          <Fragment key={todo.id}>
+            <TodoListItem
+              {...todo}
+              onClick={() => toggleTodo(todo.id)}
+              onUpdate={text => updateTodo(todo.id, text)}
+              onRemove={() => removeTodo(todo.id)}
+            />
+            { todos.length > i + 1 && <Divider /> }
+          </Fragment>
+        )}
+      </List>
+    </Card>
+    <AddTodo />
+  </div>
 )
 
 TodoList.propTypes = {
