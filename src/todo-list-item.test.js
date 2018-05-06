@@ -17,7 +17,7 @@ describe('<TodoListItem />', () => {
     completed: true,
     text: 'waaa',
     onUpdate: jest.fn(),
-    onClick: jest.fn(),
+    onCheck: jest.fn(),
   };
   
   it('should be mounted with required props', () => {
@@ -47,7 +47,7 @@ describe('<TodoListItem />', () => {
       completed: true,
       text: 'waaa',
       onUpdate,
-      onClick: jest.fn(),
+      onCheck: jest.fn(),
     };
     const wrapper = mountWithContext(<TodoListItem { ...props } />);
     const instance = wrapper.instance();
