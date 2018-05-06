@@ -51,8 +51,7 @@ describe('<TodoListItem />', () => {
     };
     const wrapper = mountWithContext(<TodoListItem { ...props } />);
     const instance = wrapper.instance();
-    instance.setState({ inputValue: 'new value'});
-    instance.handleUpdate();
-    expect(onUpdate.mock.calls[0]).toMatchObject([0, 'new value']);
+    instance.handleUpdate('new value');
+    expect(onUpdate.mock.calls[0]).toMatchObject(['new value']);
   });
 });
