@@ -2,9 +2,6 @@ const initialState = [];
 
 const todos = (state = initialState, action) => {
   switch (action.type) { 
-    case 'REQUEST_TODOS':
-      return state;
-
     case 'RECEIVE_TODOS':
       const { todos } = action;
       return Object.keys(todos).map(key => todos[key])
