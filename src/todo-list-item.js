@@ -1,18 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  TextField,
   ListItem,
   Checkbox,
   IconButton,
   IconMenu,
   MenuItem,
-  Dialog,
-  FlatButton,
 } from 'material-ui';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import { grey400 } from 'material-ui/styles/colors';
-
+import TodoDialog from './todo-dialog';
 
 const iconButtonElement = (
   <IconButton
@@ -34,27 +31,11 @@ class TodoListItem extends React.Component {
 
   state = {
     isEditing: false,
-    inputValue: null,
   };
 
-  handleChange = e => {
-    this.setState({ inputValue: e.target.value })
-  };
-
-  startEditing = () => {
-    this.setState({
-      inputValue: this.props.text,
-      isEditing: true,
-    })
-  }
-
-  stopEditing = () => {
-    this.setState({ isEditing: false })
-  }
-
-  handleUpdate = () => {
-    this.stopEditing();
-    this.props.onUpdate(this.state.inputValue)
+  handleUpdate = dialogInputValue => {
+    this.setState({ isEditing: false });
+    this.props.onUpdate(dialogInputValue);
   }
 
   render() {
@@ -70,7 +51,7 @@ class TodoListItem extends React.Component {
         rightIconButton={ (
           <IconMenu iconButtonElement={ iconButtonElement }>
             <MenuItem
-              onClick={ this.startEditing }
+              onClick={ () => this.setState({ isEditing: true }) }
             >
               Szerkeszt
             </MenuItem>
@@ -86,31 +67,13 @@ class TodoListItem extends React.Component {
         <div className="todo-list-item-text">
           { this.props.text }
         </div>
-        <Dialog
+        <TodoDialog 
           title="Todo elem szerkesztése"
-          actions={[
-            <FlatButton
-              key="1"
-              label="Mégsem"
-              onClick={ this.stopEditing }
-            />,
-            <FlatButton
-              key="2"
-              label="Mehet"
-              primary
-              onClick={ this.handleUpdate }
-            />,
-          ]}
-          modal={ false }
+          onClose={ () => this.setState({ isEditing: false }) }
           open={ this.state.isEditing }
-          onRequestClose={ this.stopEditing }
-        >
-          <TextField
-            className="todo-list-item-modal-textfield"
-            defaultValue={ this.props.text }
-            onChange={ this.handleChange }
-          />
-        </Dialog>      
+          defaultValue={ this.props.text }
+          onSave={ this.handleUpdate }
+        />
       </ListItem>
     );
   }
