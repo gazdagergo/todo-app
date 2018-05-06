@@ -15,9 +15,7 @@ class App extends Component {
             showMenuIconButton={ false }
           />
           <div className="App-wrapper">
-            <TodoList
-              todos={ this.state.todos }
-            />
+            <TodoList />
           </div>
         </div>
       </MuiThemeProvider>
