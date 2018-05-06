@@ -45,7 +45,7 @@ class TodoListItem extends React.Component {
         leftCheckbox={ (
           <Checkbox
             onCheck={ (e, isChecked) => this.props.onCheck(isChecked) }
-            checked={ this.props.completed }
+            checked={ !!this.props.completed }
           />
         ) }
         rightIconButton={ (
