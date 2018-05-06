@@ -49,6 +49,7 @@ class TodoDialog extends React.Component {
           defaultValue={ this.props.defaultValue }
           onChange={ this.handleChange }
           id="modal-text"
+          onKeyPress={ e => e.key === 'Enter' && this.props.onSave(this.state.inputValue) }
         />
       </Dialog>       
     )
