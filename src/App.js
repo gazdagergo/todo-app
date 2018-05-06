@@ -5,21 +5,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { AppBar } from 'material-ui';
 
 class App extends Component {
-  state = {
-    todos: [
-      {
-        id: 0,
-        completed: true,
-        text: 'waaa',
-      },
-      {
-        id: 1,
-        completed: false,
-        text: 'wooo',
-      },
-    ],
-  }
-
   render() {
     return (
       <MuiThemeProvider>
