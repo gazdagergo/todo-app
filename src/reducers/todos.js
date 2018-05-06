@@ -6,7 +6,8 @@ const todos = (state = initialState, action) => {
       return state;
 
     case 'RECEIVE_TODOS':
-      return action.todos;
+      const { todos } = action;
+      return Object.keys(todos).map(key => todos[key])
 
     case 'TOGGLE_TODO':
       return state.map(todo =>
