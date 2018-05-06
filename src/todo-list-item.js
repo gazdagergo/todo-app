@@ -50,11 +50,13 @@ class TodoListItem extends React.Component {
         ) }
         rightIconButton={ (
           <IconMenu iconButtonElement={ iconButtonElement }>
-            <MenuItem
-              onClick={ () => this.setState({ isEditing: true }) }
-            >
-              Szerkeszt
-            </MenuItem>
+            { !this.props.completed && (
+              <MenuItem
+                onClick={ () => this.setState({ isEditing: true }) }
+              >
+                Szerkeszt
+              </MenuItem>
+            )}
             <MenuItem
               onClick={ this.props.onRemove }
             >
