@@ -10,10 +10,22 @@ export const fetchTodos = () => dispatch => {
     .then(json => dispatch(receiveTodos(json)))
 };
 
-export const toggleTodo = id => ({
-  type: "TOGGLE_TODO",
-  id,
-});
+export const toggleTodo = (id, isChecked) => dispatch => {
+  fetch(`https://gg-todo-app.firebaseio.com/todos/${id}.json`, {
+    body: JSON.stringify({ completed: isChecked }),
+    method: 'PATCH',    
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json' },    
+    })
+    .then(response => response.json())
+    .then(json => dispatch({
+      type: "TOGGLE_TODO",
+      id, 
+      completed: json.completed,
+    }
+  ))
+};
 
 export const updateTodo = (id, text) => dispatch => {
   fetch(`https://gg-todo-app.firebaseio.com/todos/${id}.json`, {

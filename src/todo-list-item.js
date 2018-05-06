@@ -23,7 +23,7 @@ const iconButtonElement = (
 class TodoListItem extends React.Component {
   static propTypes = {
     onRemove: PropTypes.func,
-    onClick: PropTypes.func.isRequired,
+    onCheck: PropTypes.func.isRequired,
     completed: PropTypes.bool,
     text: PropTypes.string.isRequired,
     onUpdate: PropTypes.func.isRequired,
@@ -44,7 +44,7 @@ class TodoListItem extends React.Component {
         className="todo-list-item"
         leftCheckbox={ (
           <Checkbox
-            onCheck={ this.props.onClick }
+            onCheck={ (e, isChecked) => this.props.onCheck(isChecked) }
             checked={ this.props.completed }
           />
         ) }

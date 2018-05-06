@@ -31,7 +31,7 @@ class TodoList extends React.Component {
               <Fragment key={todo.id}>
                 <TodoListItem
                   {...todo}
-                  onClick={() => this.props.toggleTodo(todo.id)}
+                  onCheck={isChecked => this.props.toggleTodo(todo.id, isChecked)}
                   onUpdate={text => this.props.updateTodo(todo.id, text)}
                   onRemove={() => this.props.removeTodo(todo.id)}
                 />
@@ -52,7 +52,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   fetchTodos: () =>  dispatch(fetchTodos()),
-  toggleTodo: id => dispatch(toggleTodo(id)),
+  toggleTodo: (id, isChecked) => dispatch(toggleTodo(id, isChecked)),
   updateTodo: (id, text) => dispatch(updateTodo(id, text)),
   removeTodo: id => dispatch(removeTodo(id)),
 });
