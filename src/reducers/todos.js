@@ -1,6 +1,6 @@
 const initialState = [
   {
-    id: 0,
+    id: 'first',
     text: 'Az első tennivalóm',
     completed: false,
   }

@@ -1,3 +1,6 @@
+import ShortUniqueId from 'short-unique-id';
+const uid = new ShortUniqueId();
+
 export const toggleTodo = id => ({
   type: "TOGGLE_TODO",
   id,
@@ -14,9 +17,8 @@ export const removeTodo = id => ({
   id,
 });
 
-let nextTodoId = 1;
 export const addTodo = text => ({
   type: "ADD_TODO",
-  id: nextTodoId++,
+  id: uid.randomUUID(6),
   text
 });
