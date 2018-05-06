@@ -11,6 +11,11 @@ export const fetchTodos = () => dispatch => {
 };
 
 export const toggleTodo = (id, isChecked) => dispatch => {
+  dispatch({
+    type: "TOGGLE_TODO",
+    id,
+    completed: isChecked
+  });
   fetch(`https://gg-todo-app.firebaseio.com/todos/${id}.json`, {
     body: JSON.stringify({ completed: isChecked }),
     method: 'PATCH',    
