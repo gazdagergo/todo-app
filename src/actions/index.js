@@ -1,5 +1,3 @@
-import ShortUniqueId from 'short-unique-id';
-const uid = new ShortUniqueId();
 
 export const receiveTodos = json => ({
   type: 'RECEIVE_TODOS',
@@ -39,8 +37,19 @@ export const removeTodo = id => ({
   id,
 });
 
-export const addTodo = text => ({
-  type: "ADD_TODO",
-  id: uid.randomUUID(6),
-  text
-});
+export const addTodo = text => dispatch => {
+  fetch(`https://gg-todo-app.firebaseio.com/todos.json`, {
+    body: JSON.stringify({ text }),
+    method: 'POST',    
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json' },    
+    })
+    .then(response => response.json())
+    .then(json => dispatch({
+      type: "ADD_TODO",
+      id: json.name,
+      text,
+    }
+  ))
+};
