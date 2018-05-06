@@ -48,6 +48,7 @@ class TodoDialog extends React.Component {
           className="todo-list-item-modal-textfield"
           defaultValue={ this.props.defaultValue }
           onChange={ this.handleChange }
+          id="modal-text"
         />
       </Dialog>       
     )
