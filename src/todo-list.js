@@ -9,7 +9,7 @@ import AddTodo from './todo-add';
 class TodoList extends React.Component {
   static propTypes = {
     todos: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.number.isRequired,
+      id: PropTypes.string.isRequired,
       completed: PropTypes.bool,
       text: PropTypes.string.isRequired,
     }).isRequired).isRequired,
